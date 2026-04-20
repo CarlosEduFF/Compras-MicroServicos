@@ -26,11 +26,33 @@ spring:
           uri: lb://api-produto
           predicates:
             - Path=/produto/**
+          filters:
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY, SERVICE_UNAVAILABLE, NOT_FOUND
+                methods: GET, POST
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: true
 
         - id: api-login
           uri: lb://api-login
           predicates:
             - Path=/login/**
+          filters:
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY, SERVICE_UNAVAILABLE, NOT_FOUND
+                methods: GET, POST
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: true
 
         - id: api-cliente
           uri: lb://api-cliente
