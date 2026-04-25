@@ -18,14 +18,13 @@ public class RouteConfig {
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchange -> exchange
-                        .pathMatchers("/fatec/login/v1/auth/**")
+                        .pathMatchers("/login/v1/user/salvar/**", "/login/v1/auth/**")
                         .permitAll()
-                        .pathMatchers("/fatec/kleber/v1/teste/**").authenticated()
-                        .pathMatchers("/fatec/kleber/v1/admin/**").hasRole("ADMIN")
                         .anyExchange().authenticated()
                 ).oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()))
                 .build();
     }
+
 
     @Bean
     public ReactiveJwtAuthenticationConverter jwtAuthenticationConverter() {

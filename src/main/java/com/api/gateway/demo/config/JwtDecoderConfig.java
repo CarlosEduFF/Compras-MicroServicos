@@ -11,7 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class JwtDecoderConfig {
     @Bean
     public ReactiveJwtDecoder jwtDecoder() {
-        final String secretKey = "u7x!A$9zLq#2vNf@eR6tYpWmZcXbGdQh";
+        final String secretKey = "YmmvlRZIh7Ev4xW9k9MTrdCi2IbY4giwA122EjUZ9UYmLq6cURIo2Ty0CFBPemhe";
         return NimbusReactiveJwtDecoder.withSecretKey(
                 new SecretKeySpec(secretKey.getBytes(), "HmacSHA256")
         ).build();
